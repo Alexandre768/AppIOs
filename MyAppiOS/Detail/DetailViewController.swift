@@ -1,29 +1,33 @@
-//
-//  DetailViewController.swift
-//  MyAppiOS
-//
-//  Created by user on 29/08/23.
-//
-
 import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var imageRick: UIImageView!
+    @IBOutlet weak var titleRick: UILabel!
+    @IBOutlet weak var imageMornie: UIImageView!
+    @IBOutlet weak var desc: UILabel!
+    @IBOutlet weak var especie: UILabel!
+    @IBOutlet var origem: UIView!
+    @IBOutlet weak var ultimavez: UILabel!
+    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var sexo: UILabel!
+    
+    
+    var movie: Movie!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        imageMornie.layer.cornerRadius = 8
+        imageMornie.layer.masksToBounds = true
+        imageMornie.contentMode = .scaleAspectFill
+        
+        titleRick.text = movie.title
+        
+        
     }
     
+    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

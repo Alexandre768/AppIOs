@@ -77,6 +77,9 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("..... CEll :\(indexPath.row)")
+        let storyBoard = UIStoryboard(name: "Detail", bundle: Bundle(for: DetailViewController.self))
+        let viewController = storyBoard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
+        viewController.movie = movies[indexPath.row]
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
