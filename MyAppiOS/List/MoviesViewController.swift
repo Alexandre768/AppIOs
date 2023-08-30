@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 class MoviesViewController: UIViewController {
@@ -81,8 +79,4 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("..... CEll :\(indexPath.row)")
     }
-    
- 
-    
-    
 }

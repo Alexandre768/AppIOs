@@ -91,7 +91,7 @@ class MovieCell: UITableViewCell {
         vivoLabel.text = movie.vida
         HumanLabel.text = movie.Human
         ProtagLabel.text = movie.statu
-        imageMoviewView.download(path: movie.imageUrl)
+//        imageMoviewView.download(path: movie.imageUrl)
         episodioa.text = "Episodio: \(movie.episodio)"
        
     }

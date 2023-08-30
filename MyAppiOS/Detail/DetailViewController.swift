@@ -1,8 +1,8 @@
 //
 //  DetailViewController.swift
-//  AppIos
+//  MyAppiOS
 //
-//  Created by aluno on 23/08/23.
+//  Created by user on 29/08/23.
 //
 
 import UIKit
