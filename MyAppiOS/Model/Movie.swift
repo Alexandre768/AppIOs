@@ -1,5 +1,4 @@
 struct Movie {
-    
     let title: String
     let imageUrl: String
     let vida: String

@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  AppIos
+//  MyAppiOS
 //
-//  Created by aluno on 21/08/23.
+//  Created by user on 29/08/23.
 //
 
 import UIKit
