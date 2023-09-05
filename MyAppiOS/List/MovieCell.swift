@@ -88,7 +88,7 @@ class MovieCell: UITableViewCell {
     
     func configure(movie: Movie) {
         titleLabel.text = movie.title
-        vivoLabel.text = movie.vida
+        vivoLabel.text = " \(movie.vida) |"
         HumanLabel.text = movie.Human
         ProtagLabel.text = movie.statu
 //        imageMoviewView.download(path: movie.imageUrl)
