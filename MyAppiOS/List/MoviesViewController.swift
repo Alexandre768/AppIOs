@@ -1,6 +1,6 @@
 import UIKit
 
-class MoviesViewController: UIViewController {
+class MoviesViewController: UIViewController { //Personagem View Controller
     
     private var movies: [Movie] = [
         .init(title: "Rick Sanchez", imageUrl: "Rick-and-Morty 1", vida: "Vivo", statu: "Protagonista", Human: "Humano", episodio: "51"),
@@ -64,7 +64,7 @@ class MoviesViewController: UIViewController {
     }
 }
 
-extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
+extension MoviesViewController: UITableViewDataSource, UITableViewDelegate { //Personagens
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = MovieCell()
         let movie = movies[indexPath.row]
@@ -75,7 +75,7 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
     }
-    
+    //Capta toques na tela do usuario, navegacao da tela
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "Detail", bundle: Bundle(for: DetailViewController.self))
         let viewController = storyBoard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController

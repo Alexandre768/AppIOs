@@ -1,5 +1,5 @@
 import UIKit
-
+//Cria as referencias com a segunda tela
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var imageRick: UIImageView!
