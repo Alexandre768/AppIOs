@@ -14,6 +14,7 @@ class MovieCell: UITableViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 49
+      
         image.layer.masksToBounds = true
         image.backgroundColor = .systemGray2
         return image
@@ -35,21 +36,21 @@ class MovieCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-    private let vivoLabel: UILabel = { //Status de vida
+    private let vivoLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11, weight: .black)
         label.textColor = .darkGray
         label.numberOfLines = 0
         return label
     }()
-    private let ProtagLabel: UILabel = {//Protagonista
+    private let ProtagLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11, weight: .black)
         label.textColor = .darkGray
         label.numberOfLines = 0
         return label
     }()
-    private let HumanLabel: UILabel = { //Especie do personagem
+    private let HumanLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11, weight: .black)
         label.textColor = .darkGray
@@ -71,14 +72,20 @@ class MovieCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-    
-    
+    private let image: UIImageView = {
+        let imageView = UIImageView ()
+        imageView.image = UIImage(named: "Rick-and-Morty 2")
+        imageView.contentMode = .scaleToFill
+        return imageView
+    }()
+//
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupContentView()
         addViewsInHierarchy()
         setupConstraints()
+      // self.view.addSubview(self.image)
     }
     
     @available(*, unavailable)
@@ -90,7 +97,7 @@ class MovieCell: UITableViewCell {
         titleLabel.text = movie.title
         vivoLabel.text = " \(movie.vida) |"
         HumanLabel.text = movie.Human
-        ProtagLabel.text = movie.statu
+        ProtagLabel.text = "\(movie.statu) | "
 //        imageMoviewView.download(path: movie.imageUrl)
         episodioa.text = "Episodio: \(movie.episodio)"
        
@@ -103,6 +110,7 @@ class MovieCell: UITableViewCell {
     private func addViewsInHierarchy() {
         contentView.addSubview(horizontalStack)
         horizontalStack.addArrangedSubview(imageMoviewView)
+        horizontalStack.addArrangedSubview(image)
       
         horizontalStack.addArrangedSubview(verticalStack)
         verticalStack.addArrangedSubview(UIView())
@@ -122,7 +130,7 @@ class MovieCell: UITableViewCell {
             horizontalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             horizontalStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-        
+     
         NSLayoutConstraint.activate([
             imageMoviewView.widthAnchor.constraint(equalToConstant:  114.99993133544922),
             imageMoviewView.heightAnchor.constraint(equalToConstant: 85.51513671875)
@@ -130,7 +138,7 @@ class MovieCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             vivoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
-            vivoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 170),
+            vivoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 164),
             vivoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             vivoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         
@@ -144,7 +152,7 @@ class MovieCell: UITableViewCell {
         ])
         NSLayoutConstraint.activate([
             HumanLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
-            HumanLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 280),
+            HumanLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 285),
             HumanLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         
         ])
@@ -164,5 +172,14 @@ class MovieCell: UITableViewCell {
           
         
         ])
+//        NSLayoutConstraint.activate([
+//            image.widthAnchor.constraint(equalToConstant:  200),
+//            image.heightAnchor.constraint(equalToConstant: 100),
+//            image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -200 )
+//
+//
+//
+//            ])
+      
     }
 }

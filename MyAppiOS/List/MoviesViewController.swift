@@ -6,7 +6,13 @@ class MoviesViewController: UIViewController { //Personagem View Controller
         .init(title: "Rick Sanchez", imageUrl: "Rick-and-Morty 1", vida: "Vivo", statu: "Protagonista", Human: "Humano", episodio: "51"),
         .init(title: "Morty Smitc", imageUrl: "Rick-and-Morty 1", vida: "Vivo", statu: "Protagonista", Human: "Humano", episodio: "56")
     ]
-
+    private let image: UIImageView = {
+        let imageView = UIImageView ()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "Rick-and-Morty 2")
+        imageView.contentMode = .scaleToFill
+        return imageView
+    }()
     private let titleLabel: UILabel = {
         
         let label = UILabel()
@@ -22,7 +28,7 @@ class MoviesViewController: UIViewController { //Personagem View Controller
     }()
     
     private let tableView: UITableView = {
-       let tableView = UITableView()
+        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         return tableView
@@ -32,14 +38,16 @@ class MoviesViewController: UIViewController { //Personagem View Controller
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        view.addSubview(image)
+
         tableView.dataSource = self
         tableView.delegate = self
         addViewsInHierarchy()
         setupConstraints()
-        fetchRemoteCharacter() //CHAMA A API
-
+       // fetchRemoteCharacter() //CHAMA A API
+        
     }
-
+    
     private func addViewsInHierarchy(){
         view.addSubview(titleLabel)
         view.addSubview(tableView)
@@ -51,9 +59,9 @@ class MoviesViewController: UIViewController { //Personagem View Controller
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
-          
             
-        
+            
+            
         ])
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,constant: 16),
@@ -61,25 +69,33 @@ class MoviesViewController: UIViewController { //Personagem View Controller
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             
-        
+            
         ])
+        NSLayoutConstraint.activate([
+            image.widthAnchor.constraint(equalToConstant:  210),
+            image.heightAnchor.constraint(equalToConstant: 55),
+    
+            image.topAnchor.constraint(equalTo: view.topAnchor,constant: 65),
+            image.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 62),
+            image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -62)
+            ])
     }
     
     //CONSUMINDO DADOS DA API
-    private func fetchRemoteCharacter(){
-        let url = URL(string: "https://rickandmortyapi.com/api")!
-        
-        let request = URLRequest(url: url)
-       let task = URLSession.shared.dataTask(with: request) { data, _,
-           error in
-           if let error {return}
-           guard let charactersData = data else {return}
-           
-           print(String(data: charactersData, encoding: .utf8))
-           
-        }
-        task.resume()
-    }
+    //    private func fetchRemoteCharacter(){
+    //        let url = URL(string: "https://rickandmortyapi.com/api")!
+    //
+    //        let request = URLRequest(url: url)
+    //       let task = URLSession.shared.dataTask(with: request) { data, _,
+    //           error in
+    //           if let error {return}
+    //           guard let charactersData = data else {return}
+    //
+    //           print(String(data: charactersData, encoding: .utf8))
+    //
+    //        }
+    //        task.resume()
+     //}
 }
 
 
