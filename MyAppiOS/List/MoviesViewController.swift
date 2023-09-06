@@ -36,6 +36,8 @@ class MoviesViewController: UIViewController { //Personagem View Controller
         tableView.delegate = self
         addViewsInHierarchy()
         setupConstraints()
+        fetchRemoteCharacter() //CHAMA A API
+
     }
 
     private func addViewsInHierarchy(){
@@ -62,7 +64,25 @@ class MoviesViewController: UIViewController { //Personagem View Controller
         
         ])
     }
+    
+    //CONSUMINDO DADOS DA API
+    private func fetchRemoteCharacter(){
+        let url = URL(string: "https://rickandmortyapi.com/api")!
+        
+        let request = URLRequest(url: url)
+       let task = URLSession.shared.dataTask(with: request) { data, _,
+           error in
+           if let error {return}
+           guard let charactersData = data else {return}
+           
+           print(String(data: charactersData, encoding: .utf8))
+           
+        }
+        task.resume()
+    }
 }
+
+
 
 extension MoviesViewController: UITableViewDataSource, UITableViewDelegate { //Personagens
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
