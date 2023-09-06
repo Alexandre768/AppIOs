@@ -6,3 +6,4 @@ struct Movie {
     let Human: String
     let episodio: String
 }
+//Dados que a API retorna

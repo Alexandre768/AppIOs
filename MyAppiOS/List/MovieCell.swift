@@ -35,21 +35,21 @@ class MovieCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-    private let vivoLabel: UILabel = {
+    private let vivoLabel: UILabel = { //Status de vida
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11, weight: .black)
         label.textColor = .darkGray
         label.numberOfLines = 0
         return label
     }()
-    private let ProtagLabel: UILabel = {
+    private let ProtagLabel: UILabel = {//Protagonista
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11, weight: .black)
         label.textColor = .darkGray
         label.numberOfLines = 0
         return label
     }()
-    private let HumanLabel: UILabel = {
+    private let HumanLabel: UILabel = { //Especie do personagem
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11, weight: .black)
         label.textColor = .darkGray
