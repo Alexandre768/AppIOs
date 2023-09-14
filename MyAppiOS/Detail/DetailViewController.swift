@@ -13,7 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var sexo: UILabel!
     
     
-    var movie: Movie!
+    var person: Person!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
         imageMornie.layer.masksToBounds = true
         imageMornie.contentMode = .scaleAspectFill
         
-        titleRick.text = movie.title
+        titleRick.text = person.name
         
         
     }

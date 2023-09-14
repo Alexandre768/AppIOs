@@ -1,11 +1,8 @@
 import UIKit
 
-class MoviesViewController: UIViewController { //Personagem View Controller
+class PersonViewController: UIViewController { //Personagem View Controller
     
-    private var movies: [Movie] = [
-        .init(title: "Rick Sanchez", imageUrl: "Rick-and-Morty 1", vida: "Vivo", statu: "Protagonista", Human: "Humano", episodio: "51"),
-        .init(title: "Morty Smitc", imageUrl: "Rick-and-Morty 1", vida: "Vivo", statu: "Protagonista", Human: "Humano", episodio: "56")
-    ]
+    private var persons: [Person] = []
     private let image: UIImageView = {
         let imageView = UIImageView ()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -77,10 +74,40 @@ class MoviesViewController: UIViewController { //Personagem View Controller
     
             image.topAnchor.constraint(equalTo: view.topAnchor,constant: 65),
             image.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 62),
-            image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -62)
+            //image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -62)
             ])
     }
-    
+    //Consumindo API
+    private func fetchRemotePerson(){
+        let url = URL(string: "https://rickandmortyapi.com/api")!
+        
+        let request = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: request){data, _, error in
+            if error != nil { return }
+            
+            guard let PersonData = data else {return}
+          //MOstrar os dados no console, retirar comentarios do print
+          //print(String(data: PersonData, encoding: .utf8))
+            
+           let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            guard let remotePerson = try? decoder.decode(RemotePerson.self, from: PersonData) else  {return}
+            
+            self.persons = remotePerson.info
+            
+        
+        
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+//
+        }
+        task.resume()
+    }
+
+}
     //CONSUMINDO DADOS DA API
     //    private func fetchRemoteCharacter(){
     //        let url = URL(string: "https://rickandmortyapi.com/api")!
@@ -96,26 +123,26 @@ class MoviesViewController: UIViewController { //Personagem View Controller
     //        }
     //        task.resume()
      //}
-}
 
 
 
-extension MoviesViewController: UITableViewDataSource, UITableViewDelegate { //Personagens
+
+extension PersonViewController: UITableViewDataSource, UITableViewDelegate { //Personagens
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = MovieCell()
-        let movie = movies[indexPath.row]
-        cell.configure(movie: movie)
+        let cell = PersonCell()
+        let person = persons[indexPath.row]
+        cell.configure(person: person)
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        persons.count
     }
     //Capta toques na tela do usuario, navegacao da tela
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "Detail", bundle: Bundle(for: DetailViewController.self))
         let viewController = storyBoard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
-        viewController.movie = movies[indexPath.row]
+        viewController.person = persons[indexPath.row]
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

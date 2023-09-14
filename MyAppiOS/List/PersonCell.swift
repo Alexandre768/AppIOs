@@ -1,6 +1,6 @@
 import UIKit
 
-class MovieCell: UITableViewCell {
+class PersonCell: UITableViewCell {
     
     private let horizontalStack: UIStackView = {
         let stack = UIStackView()
@@ -10,7 +10,7 @@ class MovieCell: UITableViewCell {
         return stack
     }()
 
-    private let imageMoviewView: UIImageView = {
+    private let imagePersonView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 49
@@ -93,13 +93,13 @@ class MovieCell: UITableViewCell {
         nil
     }
     
-    func configure(movie: Movie) {
-        titleLabel.text = movie.title
-        vivoLabel.text = " \(movie.vida) |"
-        HumanLabel.text = movie.Human
-        ProtagLabel.text = "\(movie.statu) | "
-//        imageMoviewView.download(path: movie.imageUrl)
-        episodioa.text = "Episodio: \(movie.episodio)"
+    func configure(person: Person) {
+        titleLabel.text = person.name
+        vivoLabel.text = " \(person.status) |"
+        HumanLabel.text = person.species
+        ProtagLabel.text = "\(person.status) | "
+       imagePersonView.download(path: person.image)
+        episodioa.text = "Episodio: \(person.episode)"
        
     }
     
@@ -109,7 +109,7 @@ class MovieCell: UITableViewCell {
     
     private func addViewsInHierarchy() {
         contentView.addSubview(horizontalStack)
-        horizontalStack.addArrangedSubview(imageMoviewView)
+        horizontalStack.addArrangedSubview(imagePersonView)
         horizontalStack.addArrangedSubview(image)
       
         horizontalStack.addArrangedSubview(verticalStack)
@@ -132,8 +132,8 @@ class MovieCell: UITableViewCell {
         ])
      
         NSLayoutConstraint.activate([
-            imageMoviewView.widthAnchor.constraint(equalToConstant:  114.99993133544922),
-            imageMoviewView.heightAnchor.constraint(equalToConstant: 85.51513671875)
+            imagePersonView.widthAnchor.constraint(equalToConstant:  114.99993133544922),
+            imagePersonView.heightAnchor.constraint(equalToConstant: 85.51513671875)
         ])
         
         NSLayoutConstraint.activate([
@@ -172,14 +172,7 @@ class MovieCell: UITableViewCell {
           
         
         ])
-//        NSLayoutConstraint.activate([
-//            image.widthAnchor.constraint(equalToConstant:  200),
-//            image.heightAnchor.constraint(equalToConstant: 100),
-//            image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -200 )
-//
-//
-//
-//            ])
+
       
     }
 }
