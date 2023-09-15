@@ -2,7 +2,7 @@ import UIKit
 
 class PersonViewController: UIViewController { //Personagem View Controller
     
-    private var persons: [Person] = []
+    private var persons: [Result] = []
     private let image: UIImageView = {
         let imageView = UIImageView ()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,12 +36,13 @@ class PersonViewController: UIViewController { //Personagem View Controller
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         view.addSubview(image)
-
+        tableView.register(PersonCell.self, forCellReuseIdentifier: "DefaultCell")
+        
         tableView.dataSource = self
         tableView.delegate = self
         addViewsInHierarchy()
         setupConstraints()
-       // fetchRemoteCharacter() //CHAMA A API
+        fetchRemotePerson() //CHAMA A API
         
     }
     
@@ -79,7 +80,11 @@ class PersonViewController: UIViewController { //Personagem View Controller
     }
     //Consumindo API
     private func fetchRemotePerson(){
-        let url = URL(string: "https://rickandmortyapi.com/api")!
+        
+        // Base url
+        //Endpoint
+        //
+        let url = URL(string: "https://rickandmortyapi.com/api/character")!
         
         let request = URLRequest(url: url)
         
@@ -87,15 +92,15 @@ class PersonViewController: UIViewController { //Personagem View Controller
             if error != nil { return }
             
             guard let PersonData = data else {return}
-          //MOstrar os dados no console, retirar comentarios do print
-          //print(String(data: PersonData, encoding: .utf8))
+            //MOstrar os dados no console, retirar comentarios do print
+           // print(String(data: PersonData, encoding: .utf8))
             
            let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             guard let remotePerson = try? decoder.decode(RemotePerson.self, from: PersonData) else  {return}
             
-            self.persons = remotePerson.info
+            self.persons = remotePerson.results
             
         
         
@@ -129,9 +134,9 @@ class PersonViewController: UIViewController { //Personagem View Controller
 
 extension PersonViewController: UITableViewDataSource, UITableViewDelegate { //Personagens
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = PersonCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell") as! PersonCell
         let person = persons[indexPath.row]
-        cell.configure(person: person)
+        cell.configure(person: person) //ERROR
         return cell
     }
     

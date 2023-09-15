@@ -93,13 +93,13 @@ class PersonCell: UITableViewCell {
         nil
     }
     
-    func configure(person: Person) {
+    func configure(person: Result) {
         titleLabel.text = person.name
-        vivoLabel.text = " \(person.status) |"
-        HumanLabel.text = person.species
+        vivoLabel.text = " \(person.status.rawValue) |"
+      //  HumanLabel.text = person.species.
         ProtagLabel.text = "\(person.status) | "
        imagePersonView.download(path: person.image)
-        episodioa.text = "Episodio: \(person.episode)"
+        //episodioa.text = "Episodio: \(person.episode.last)"
        
     }
     

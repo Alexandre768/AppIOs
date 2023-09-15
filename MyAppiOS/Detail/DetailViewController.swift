@@ -13,7 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var sexo: UILabel!
     
     
-    var person: Person!
+    var person: Result!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,7 @@ class DetailViewController: UIViewController {
         imageMornie.layer.cornerRadius = 8
         imageMornie.layer.masksToBounds = true
         imageMornie.contentMode = .scaleAspectFill
+        imageMornie.download(path: person.image)
         
         titleRick.text = person.name
         

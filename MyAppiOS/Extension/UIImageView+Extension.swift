@@ -3,8 +3,8 @@ import UIKit
 
 extension UIImageView {
     func download(path: String) {
-        var imageUrl = URL(string: "https://rickandmortyapi.com/api/character/avatar/106.jpeg")!
-        imageUrl.append(path: path)
+        var imageUrl = URL(string:path)!
+        //imageUrl.append(path: path)
 
         let task = URLSession.shared.dataTask(with: .init(url: imageUrl)) { data, response, error in
             if error != nil { return }
