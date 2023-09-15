@@ -27,9 +27,5 @@ class DetailViewController: UIViewController {
         
         
     }
-    
-    
-
-
 }
 //Configura coisas que irao aparecer na tela

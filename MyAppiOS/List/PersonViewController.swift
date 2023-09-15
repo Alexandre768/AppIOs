@@ -33,7 +33,6 @@ class PersonViewController: UIViewController { //Personagem View Controller
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         view.backgroundColor = .white
         view.addSubview(image)
         tableView.register(PersonCell.self, forCellReuseIdentifier: "DefaultCell")
@@ -80,10 +79,7 @@ class PersonViewController: UIViewController { //Personagem View Controller
     }
     //Consumindo API
     private func fetchRemotePerson(){
-        
-        // Base url
-        //Endpoint
-        //
+
         let url = URL(string: "https://rickandmortyapi.com/api/character")!
         
         let request = URLRequest(url: url)
@@ -102,35 +98,14 @@ class PersonViewController: UIViewController { //Personagem View Controller
             
             self.persons = remotePerson.results
             
-        
-        
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-//
         }
         task.resume()
     }
 
 }
-    //CONSUMINDO DADOS DA API
-    //    private func fetchRemoteCharacter(){
-    //        let url = URL(string: "https://rickandmortyapi.com/api")!
-    //
-    //        let request = URLRequest(url: url)
-    //       let task = URLSession.shared.dataTask(with: request) { data, _,
-    //           error in
-    //           if let error {return}
-    //           guard let charactersData = data else {return}
-    //
-    //           print(String(data: charactersData, encoding: .utf8))
-    //
-    //        }
-    //        task.resume()
-     //}
-
-
-
 
 extension PersonViewController: UITableViewDataSource, UITableViewDelegate { //Personagens
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

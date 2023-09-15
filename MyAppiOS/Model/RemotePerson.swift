@@ -4,13 +4,13 @@ struct RemotePerson: Codable {
     let info: Info
     let results: [Result]
 }
-// MARK: - Info
+// MARK: - Informacoes
 struct Info: Codable {
     let count, pages: Int
     let next: String
     let prev: JSONNull?
 }
-// MARK: - Result
+// MARK: - Resultados
 struct Result: Codable {
     let id: Int
     let name: String
@@ -34,8 +34,6 @@ struct Location: Codable {
     let url: String
 }
 
-
-
 enum Species: String, Codable {
     case alien = "Alien"
     case human = "Human"
@@ -45,14 +43,12 @@ enum Status: String, Codable {
     case dead = "Dead"
     case unknown = "unknown"
 }
-// MARK: - Encode/decode helpers
-
+//Modificações feitas apartir daqui
 class JSONNull: Codable, Hashable {
 
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
     }
-
 
 
  public var hashValue: Int {
