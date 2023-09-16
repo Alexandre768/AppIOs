@@ -8,7 +8,7 @@ struct Person: Decodable {
     let origin: String
     let location: String
     let image: String
-    let episode: [String]
+    let episode: String
     let url: String
     let created: String
 }

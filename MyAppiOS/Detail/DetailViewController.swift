@@ -8,6 +8,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var especie: UILabel!
     @IBOutlet var origem: UIView!
+
     @IBOutlet weak var ultimavez: UILabel!
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var sexo: UILabel!
@@ -22,10 +23,37 @@ class DetailViewController: UIViewController {
         imageMornie.layer.masksToBounds = true
         imageMornie.contentMode = .scaleAspectFill
         imageMornie.download(path: person.image)
+        colorNames()
         
         titleRick.text = person.name
+        especie.text = "Status: \(person.status.rawValue)"
+        sexo.text = "Species: \(person.species.rawValue)"
+        status.text = "Gender: \(person.gender.rawValue)"
+       ultimavez.text = "Created: \(person.created)"
+       // print(ultimavez)
         
+       
+       
+       
         
     }
+    func colorNames()
+    {
+        let status = person.status.rawValue
+        switch status{
+        case "Alive" :
+            return especie.textColor = .green
+            
+        case "unknown" :
+            return especie.textColor = .gray
+            
+        case "Dead" :
+            return especie.textColor = .red
+        default:
+            return
+        }
+      
+    }
+    
 }
 //Configura coisas que irao aparecer na tela

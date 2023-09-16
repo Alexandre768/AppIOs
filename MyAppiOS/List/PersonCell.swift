@@ -22,6 +22,7 @@ class PersonCell: UITableViewCell {
     
     private let verticalStack: UIStackView = {
         let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.spacing = 8
         stack.distribution = .equalCentering
@@ -30,6 +31,7 @@ class PersonCell: UITableViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .black
         label.textAlignment = .center
@@ -38,6 +40,7 @@ class PersonCell: UITableViewCell {
     }()
     private let vivoLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 11, weight: .black)
         label.textColor = .darkGray
         label.numberOfLines = 0
@@ -45,6 +48,7 @@ class PersonCell: UITableViewCell {
     }()
     private let ProtagLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 11, weight: .black)
         label.textColor = .darkGray
         label.numberOfLines = 0
@@ -52,6 +56,7 @@ class PersonCell: UITableViewCell {
     }()
     private let HumanLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 11, weight: .black)
         label.textColor = .darkGray
         label.numberOfLines = 0
@@ -60,19 +65,15 @@ class PersonCell: UITableViewCell {
     
     private let releaseDateLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .darkGray
         label.numberOfLines = 0
         return label
     }()
-    private let episodioa: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .darkGray
-        label.numberOfLines = 0
-        return label
-    }()
+
     private let image: UIImageView = {
+       
         let imageView = UIImageView ()
         imageView.image = UIImage(named: "Rick-and-Morty 2")
         imageView.contentMode = .scaleToFill
@@ -95,12 +96,27 @@ class PersonCell: UITableViewCell {
     
     func configure(person: Result) {
         titleLabel.text = person.name
-        vivoLabel.text = " \(person.status.rawValue) |"
-      //  HumanLabel.text = person.species.
-        ProtagLabel.text = "\(person.status) | "
-       imagePersonView.download(path: person.image)
-        //episodioa.text = "Episodio: \(person.episode.last)"
-       
+      
+        ProtagLabel.text = " \(person.species.rawValue) |"
+        HumanLabel.text = " \(person.gender.rawValue) "
+   
+        imagePersonView.download(path: person.image)
+        vivoLabel.text = "Status: \(person.status)"
+        
+        let status = person.status.rawValue
+        switch status{
+        case "Alive" :
+            return vivoLabel.textColor = .systemGreen
+            
+        case "unknown" :
+            return vivoLabel.textColor = .gray
+            
+        case "Dead" :
+            return vivoLabel.textColor = .red
+        default:
+            return
+        }
+    
     }
     
     private func setupContentView() {
@@ -117,7 +133,7 @@ class PersonCell: UITableViewCell {
         verticalStack.addArrangedSubview(titleLabel)
         verticalStack.addArrangedSubview(vivoLabel)
         verticalStack.addArrangedSubview(HumanLabel)
-        verticalStack.addArrangedSubview(episodioa)
+        
         verticalStack.addArrangedSubview(ProtagLabel)
         verticalStack.addArrangedSubview(releaseDateLabel)
         verticalStack.addArrangedSubview(UIView())
@@ -133,16 +149,11 @@ class PersonCell: UITableViewCell {
      
         NSLayoutConstraint.activate([
             imagePersonView.widthAnchor.constraint(equalToConstant:  114.99993133544922),
-            imagePersonView.heightAnchor.constraint(equalToConstant: 85.51513671875)
+            imagePersonView.heightAnchor.constraint(equalToConstant: 85.51513671875),
+            imagePersonView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50),
         ])
         
-        NSLayoutConstraint.activate([
-            vivoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
-            vivoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 164),
-            vivoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-            vivoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        
-        ])
+   
         NSLayoutConstraint.activate([
             ProtagLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
             ProtagLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 200),
@@ -152,7 +163,7 @@ class PersonCell: UITableViewCell {
         ])
         NSLayoutConstraint.activate([
             HumanLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
-            HumanLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 285),
+            HumanLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 250),
             HumanLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         
         ])
@@ -160,15 +171,15 @@ class PersonCell: UITableViewCell {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 80),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 160),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
             
             ])
         NSLayoutConstraint.activate([
-            episodioa.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            episodioa.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-            episodioa.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 170),
-            episodioa.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 70)
+            vivoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            vivoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            vivoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 200),
+            vivoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 70)
           
         
         ])

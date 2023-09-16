@@ -10,6 +10,7 @@ class PersonViewController: UIViewController { //Personagem View Controller
         imageView.contentMode = .scaleToFill
         return imageView
     }()
+    
     private let titleLabel: UILabel = {
         
         let label = UILabel()
@@ -43,6 +44,7 @@ class PersonViewController: UIViewController { //Personagem View Controller
         setupConstraints()
         fetchRemotePerson() //CHAMA A API
         
+        
     }
     
     private func addViewsInHierarchy(){
@@ -73,7 +75,7 @@ class PersonViewController: UIViewController { //Personagem View Controller
             image.heightAnchor.constraint(equalToConstant: 55),
     
             image.topAnchor.constraint(equalTo: view.topAnchor,constant: 65),
-            image.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 62),
+            image.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
             //image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -62)
             ])
     }
